@@ -15,12 +15,217 @@
   <body>
 
     <header id="header">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod<br>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,<br>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo<br>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse<br>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non<br>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      
+      <div id="navbar-wrapper">
+      
+        <!-- Just a placeholder image! -->
+        <img src="src/images/creeper_favicon.ico"> 
+      
+        <button>Dashboard</button>
+        <button>Stats</button>
+        <button>Settings</button>
+        <button>Log in/Log out</button>
+      
+      </div>
+
     </header>
 
     <content id="content">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod<br>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,<br>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo<br>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse<br>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non<br>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      
+      <div id="content-wrapper">
+        
+        <div id="balance-display">
+          <!-- Current price of https://aliexpress.ru/item/1005008118593878.html . -->
+          1 802.49 KZT
+        </div>
+        
+        <button id="add-transaction-button">
+          +
+        </button>
+        
+        <div class="filter-wrapper">
+          <input type="datetime-local" class="datetime-picker-start">
+          <input type="datetime-local" class="datetime-picker-end">
+          <button id="button-filter-toggle">V/X</button>
+        </div>
+
+        <div id="transaction-list">
+          
+          <div class="transaction-card">
+            
+            <input type="text" class="transaction-name">
+            <button class="transaction-value-flipper">+/-</button>
+            <input type="number" class="transaction-value-number" step="0.01">
+            <textarea class="transaction-description"></textarea>
+            
+            <select id="transaction-tags" class="transaction-tags">
+              <option value="gambling">Gambling</option>
+              <option value="gems">Gems</option>
+              <option value="organs">Organs</option>
+            </select>
+
+            <input type="datetime-local" class="transaction-datetime">
+
+            <button class="transaction-deletion-button">TRASH</button>
+
+          </div>
+
+          <div class="transaction-card">
+            
+            <input type="text" class="transaction-name">
+            <button class="transaction-value-flipper">+/-</button>
+            <input type="number" class="transaction-value-number" step="0.01">
+            <textarea class="transaction-description"></textarea>
+            
+            <select id="transaction-tags" class="transaction-tags">
+              <option value="gambling">Gambling</option>
+              <option value="gems">Gems</option>
+              <option value="organs">Organs</option>
+            </select>
+
+            <input type="datetime-local" class="transaction-datetime">
+
+            <button class="transaction-deletion-button">TRASH</button>
+
+          </div>
+
+          <div class="transaction-card">
+            
+            <input type="text" class="transaction-name">
+            <button class="transaction-value-flipper">+/-</button>
+            <input type="number" class="transaction-value-number" step="0.01">
+            <textarea class="transaction-description"></textarea>
+            
+            <select id="transaction-tags" class="transaction-tags">
+              <option value="gambling">Gambling</option>
+              <option value="gems">Gems</option>
+              <option value="organs">Organs</option>
+            </select>
+
+            <input type="datetime-local" class="transaction-datetime">
+
+            <button class="transaction-deletion-button">TRASH</button>
+
+          </div>
+
+        </div>
+      
+      </div>
+
     </content>
+
+    <div id="login-modal" class="modal">
+      
+      <div class="modal-content">
+        
+        <span class="modal-close-button" id="close-login-modal">&times;</span>
+        <h2>Login</h2>
+        
+        <form id="login-form">
+
+          <label for="username">Username</label>
+          <input type="text" id="login-username-input" name="login-username-input" required>
+
+          <label for="password">Password</label>
+          <input type="password" id="login-password-input" name="login-password-input" required>
+
+          <button type="submit">Log in</button>
+      
+        </form>
+
+        <button>
+          Register instead???
+        </button>
+      
+      </div>
+
+    </div>
+
+    <div id="registration-modal" class="modal">
+      
+      <div class="modal-content">
+        
+        <span class="modal-close-button" id="close-registration-modal">&times;</span>
+        <h2>Registration</h2>
+        
+        <form id="registration-form">
+
+          <label for="username">Username</label>
+          <input type="text" id="registration-username-input" name="registration-username-input" required>
+
+          <label for="password">Password</label>
+          <input type="password" id="registration-password-input" name="registration-password-input" required>
+
+          <button type="submit">Register</button>
+      
+        </form>
+
+        <button>
+          Log in instead???
+        </button>
+      
+      </div>
+
+    </div>
+
+    <div id="statistics-modal" class="modal">
+      
+      <div class="modal-content">
+        
+        <span class="modal-close-button" id="close-statistics-modal">&times;</span>
+
+        <div class="filter-wrapper">
+          <input type="datetime-local" class="datetime-picker-start">
+          <input type="datetime-local" class="datetime-picker-end">
+          <button id="button-filter-toggle">V/X</button>
+        </div>
+        
+        <h2>COOL PIE CHARTS</h2>
+        
+        <img src="src/images/piechart.jpg">
+        <img src="src/images/piechart.jpg">
+      
+      </div>
+
+    </div>
+
+    <div id="settings-modal" class="modal">
+      <div class="modal-content">
+        
+        <span class="modal-close-button" id="close-settings-modal">&times;</span>
+        
+        <h2>Manage Tags</h2>
+
+        <div id="add-tag-wrapper">
+          <h3>Add New Tag:</h3>
+          <form id="add-tag-form">
+            <input type="text" id="new-tag-name" name="new-tag-name" placeholder="Enter new tag's name" required>
+            <button type="submit">Add Tag</button>
+          </form>
+        </div>
+
+        <div id="tag-list-wrapper">
+          <h3>Current Tags:</h3>
+          
+          <div class="tag-card">
+            <input type="text" class="tag-name" value="Gambling" readonly>
+            <button class="delete-tag-button" data-tag="gambling">Delete</button>
+          </div>
+
+          <div class="tag-card">
+            <input type="text" class="tag-name" value="Gems" readonly>
+            <button class="delete-tag-button" data-tag="gems">Delete</button>
+          </div>
+
+          <div class="tag-card">
+            <input type="text" class="tag-name" value="Organs" readonly>
+            <button class="delete-tag-button" data-tag="organs">Delete</button>
+          </div>
+
+        </div>
+        
+      </div>
+    </div>
 
   </body>
 
