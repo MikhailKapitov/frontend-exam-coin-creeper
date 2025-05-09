@@ -53,14 +53,17 @@
   }
 
   #content-wrapper {
+    max-height: 85vb;
     max-width: 1200px;
     margin: 0 auto;
     background-color: rgba(255, 255, 255, 0.95);
-    padding: 2rem;
+    padding: 1rem;
     border-radius: 8px;
     box-shadow: 0 4px 0 #1a252f;
     border: 4px solid #1a252f;
     text-align: center;
+    overflow-y: auto;
+    margin-top: 10px;
   }
 
   #balance-display {
@@ -107,12 +110,13 @@
     display: flex;
     gap: 1rem;
     align-items: center;
-    margin-top: 2rem;
-    padding: 1rem;
-    background-color: #f8f9fa;
+    margin-top: 1rem;
+    /* padding: 1rem; */
+    /* background-color: #f8f9fa;
     border-radius: 8px;
     border: 2px solid #1a252f;
-    box-shadow: 0 2px 0 #1a252f;
+    box-shadow: 0 2px 0 #1a252f; */
+    justify-content: center;
   }
 
   .filter-wrapper input[type="datetime-local"] {
@@ -151,7 +155,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
   }
 
   .transaction-card {
@@ -249,4 +253,147 @@
   .transaction-deletion-button:active {
     transform: translateY(0);
     box-shadow: none;
+  }
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 2rem;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 8px;
+    border: 4px solid #1a252f;
+    box-shadow: 0 4px 0 #1a252f;
+    animation: slideIn 0.3s ease;
+  }
+  .modal-close-button {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.2s;
+  }
+
+  .modal-close-button:hover {
+    color: #e74c3c;
+  }
+
+  .modal h2 {
+    margin-bottom: 1.5rem;
+    color: #2c3e50;
+    text-align: center;
+    font-size: 1.8rem;
+  }
+
+  /* Form styles in modal */
+  .modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .modal label {
+    color: #2c3e50;
+    font-weight: 500;
+    font-size: 1rem;
+  }
+
+  .modal input {
+    padding: 0.8rem;
+    border: 2px solid #1a252f;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: #f8f9fa;
+  }
+
+  .modal input:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+  }
+
+  .modal button[type="submit"] {
+    padding: 0.8rem;
+    background-color: #27ae60;
+    color: white;
+    border: 2px solid #1a252f;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 2px 0 #1a252f;
+    transition: all 0.2s;
+    margin-top: 1rem;
+  }
+
+  .modal button[type="submit"]:hover {
+    background-color: #219a52;
+    transform: translateY(-2px);
+  }
+
+  .modal button[type="submit"]:active {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+
+  .modal button:not([type="submit"]) {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #3498db;
+    color: white;
+    border: 2px solid #1a252f;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 2px 0 #1a252f;
+    transition: all 0.2s;
+  }
+
+  .modal button:not([type="submit"]):hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+  }
+
+  .modal button:not([type="submit"]):active {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translate(-50%, -60%);
+      opacity: 0;
+    }
+    to {
+      transform: translate(-50%, -50%);
+      opacity: 1;
+    }
   }
