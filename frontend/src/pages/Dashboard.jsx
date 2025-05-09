@@ -48,8 +48,10 @@ export default function Dashboard() {
 
   return (
     <div id="content-wrapper">
-      <div id="balance-display">{balance.toFixed(2)} KZT</div>
-      <button id="add-transaction-button" onClick={addTxn}>+</button>
+      <div className="balance-display-wrapper">
+        <div id="balance-display">{balance.toFixed(2)} KZT</div>
+        <button id="add-transaction-button" onClick={addTxn}>+</button>
+      </div>
 
       <div className="filter-wrapper">
         <input
