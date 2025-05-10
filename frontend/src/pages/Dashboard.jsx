@@ -29,7 +29,7 @@ export default function Dashboard() {
       name: '',
       amount: 0,
       description: '',
-      tag: tags[0]?.id || '',
+      tag: 'other',
       date: new Date().toISOString().slice(0,16),
     };
     const txns = [...transactions, newTxn];

@@ -8,7 +8,7 @@ const initialState = {
   token: localStorage.getItem('token'),
   balance: 0,
   transactions: [],
-  tags: [],
+  tags: [{ id: 'other', name: 'Other' }],
   loading: false,
   error: null,
 };
@@ -52,21 +52,30 @@ export function DataProvider({ children }) {
   }, [state.token]);
 
   useEffect(() => {
-    if (!state.token) return;
-    console.log('[DataContext] ▶️  Loading data for token:', state.token);
-    dispatch({ type: 'LOAD_START' });
-    loadData(state.token)
-      .then(data => {
-        console.log('[DataContext] ✅  Loaded data:', data);
-        dispatch({ type: 'LOAD_SUCCESS', data });
-        hasLoadedOnce.current = true;
-      })
-      .catch(err => {
-        console.error('[DataContext] ❌  Load error:', err);
-        dispatch({ type: 'LOAD_ERROR', error: err.message });
-        dispatch({ type: 'LOGOUT' });
-      });
-  }, [state.token]);
+  if (!state.token) return;
+  console.log('[DataContext] ▶️  Loading data for token:', state.token);
+  dispatch({ type: 'LOAD_START' });
+  loadData(state.token)
+    .then(data => {
+      const tags = data.tags || [];
+      if (!tags.some(t => t.id === 'other')) {
+        const newTags = [...tags, { id: 'other', name: 'Other' }];
+        data.tags = newTags;
+        return saveData(state.token, data).then(() => data);
+      }
+      return data;
+    })
+    .then(data => {
+      console.log('[DataContext] ✅  Loaded data:', data);
+      dispatch({ type: 'LOAD_SUCCESS', data });
+      hasLoadedOnce.current = true;
+    })
+    .catch(err => {
+      console.error('[DataContext] ❌  Load error:', err);
+      dispatch({ type: 'LOAD_ERROR', error: err.message });
+      dispatch({ type: 'LOGOUT' });
+    });
+}, [state.token]);
 
   useEffect(() => {
     if (!state.token || !hasLoadedOnce.current) return;

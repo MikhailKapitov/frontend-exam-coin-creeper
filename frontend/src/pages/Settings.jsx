@@ -3,7 +3,7 @@ import { useDataState, useDataDispatch } from '../context/DataContext';
 import { v4 as uuidv4 } from 'uuid';
 
 export default function Settings() {
-  const { tags } = useDataState();
+  const { tags, transactions } = useDataState();
   const dispatch = useDataDispatch();
   const [newTag, setNewTag] = useState('');
 
@@ -15,7 +15,20 @@ export default function Settings() {
   };
 
   const delTag = id => {
-    dispatch({ type: 'UPDATE_ALL', data: { tags: tags.filter(t => t.id !== id) } });
+    if (id === 'other') {
+      alert('Cannot delete the "Other" tag.');
+      return;
+    }
+    const updatedTransactions = transactions.map(txn => 
+      txn.tag === id ? { ...txn, tag: 'other' } : txn
+    );
+    dispatch({ 
+      type: 'UPDATE_ALL', 
+      data: { 
+        tags: tags.filter(t => t.id !== id),
+        transactions: updatedTransactions,
+      } 
+    });
   };
 
   return (
