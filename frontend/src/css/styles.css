@@ -127,7 +127,7 @@
     font-size: 0.9rem;
   }
 
-  #button-filter-toggle {
+  .filter-wrapper button {
     padding: 0.5rem 1rem;
     background-color: #3498db;
     color: white;
@@ -140,12 +140,12 @@
     transition: all 0.2s;
   }
 
-  #button-filter-toggle:hover {
+  .filter-wrapper button:hover {
     background-color: #2980b9;
     transform: translateY(-2px);
   }
 
-  #button-filter-toggle:active {
+ .filter-wrapper button:active {
     transform: translateY(0);
     box-shadow: none;
   }
