@@ -1,8 +1,39 @@
 import React, { useState } from 'react';
 import { useDataState, useDataDispatch } from '../context/DataContext';
 import { v4 as uuidv4 } from 'uuid';
+import confetti from 'canvas-confetti';
 
 export default function Settings() {
+
+  // I got the audio from the game's Wiki: https://minecraft.wiki/w/Category:Firework_sounds .
+  const audioFiles = [
+    '/src/sounds/Firework_blast_far.ogg',
+    '/src/sounds/Firework_blast.ogg',
+    '/src/sounds/Firework_large_blast_far.ogg',
+    '/src/sounds/Firework_large_blast.ogg',
+  ];
+
+  function triggerExplosion() {
+
+    const audio = new Audio(audioFiles[Math.floor(Math.random() * audioFiles.length)]);
+    console.log(audio);
+    audio.play();
+
+    for (let startVelocity = 8; startVelocity <= 16; startVelocity += 4) {
+      for (let scalar = 0.5; scalar <= 2; scalar *= 2) {
+        confetti({
+          spread: 360,
+          startVelocity: startVelocity,
+          scalar: scalar,
+          decay: 0.99,
+          gravity: 0.33,
+          particleCount: 8 / scalar
+        });
+      }
+    }
+
+  }
+
   const { tags, transactions } = useDataState();
   const dispatch = useDataDispatch();
   const [newTag, setNewTag] = useState('');
@@ -19,6 +50,7 @@ export default function Settings() {
       alert('Cannot delete the "Other" tag.');
       return;
     }
+    triggerExplosion();
     const updatedTransactions = transactions.map(txn => 
       txn.tag === id ? { ...txn, tag: 'other' } : txn
     );

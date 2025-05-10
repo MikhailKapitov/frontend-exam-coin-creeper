@@ -1,11 +1,54 @@
-// src/pages/Dashboard.jsx
-
 import React, { useState } from 'react';
 import { useDataState, useDataDispatch } from '../context/DataContext';
 import TransactionCard from '../components/TransactionCard';
 import { v4 as uuidv4 } from 'uuid';
+import confetti from 'canvas-confetti';
 
 export default function Dashboard() {
+
+  // I got the audio from the game's Wiki: https://minecraft.wiki/w/Category:Explosion_sounds .
+  const audioFiles = [
+    '/src/sounds/Explosion1.ogg',
+    '/src/sounds/Explosion2.ogg',
+    '/src/sounds/Explosion3.ogg',
+    '/src/sounds/Explosion4.ogg',
+  ];
+
+  function triggerExplosion() {
+
+    const shapes = [
+      confetti.shapeFromText({ text: '💸', scalar: 1.0 }),
+      confetti.shapeFromText({ text: '💵', scalar: 1.0 }),
+      confetti.shapeFromText({ text: '💶', scalar: 1.0 }),
+      confetti.shapeFromText({ text: '💴', scalar: 1.0 }),
+      confetti.shapeFromText({ text: '💷', scalar: 1.0 }),
+      confetti.shapeFromText({ text: '🪙', scalar: 1.0 }),
+      confetti.shapeFromText({ text: '💰', scalar: 1.0 }),
+      confetti.shapeFromText({ text: '💳', scalar: 1.0 }),
+      confetti.shapeFromText({ text: '💲', scalar: 1.0 }),
+    ]
+
+    const audio = new Audio(audioFiles[Math.floor(Math.random() * audioFiles.length)]);
+    console.log(audio);
+    audio.play();
+
+
+    for (let startVelocity = 16; startVelocity <= 32; startVelocity += 8) {
+      for (let scalar = 1; scalar <= 8; scalar *= 2) {
+        confetti({
+          shapes: shapes,
+          spread: 360,
+          startVelocity: startVelocity,
+          scalar: scalar,
+          decay: 0.99,
+          gravity: 0.33,
+          particleCount: 16 / scalar
+        });
+      }
+    }
+
+  }
+
   const { balance, transactions, tags } = useDataState();
   const dispatch = useDataDispatch();
 
@@ -42,6 +85,10 @@ export default function Dashboard() {
   };
 
   const deleteTxn = id => {
+    const txnToDelete = transactions.find(t => t.id === id);
+    if (txnToDelete && true) { // Math.abs(txnToDelete.amount) === 555
+      triggerExplosion();
+    }
     const txns = transactions.filter(t => t.id !== id);
     dispatch({ type: 'UPDATE_ALL', data: { transactions: txns, balance: recalc(txns) } });
   };
