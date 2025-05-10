@@ -1,8 +1,12 @@
 import json
 import base64
 from http.server import BaseHTTPRequestHandler, HTTPServer
+import os
+from argon2 import PasswordHasher
+from argon2.exceptions import VerificationError
 
 users = {}
+ph = PasswordHasher()
 
 def parse_token(token):
     try:
@@ -37,7 +41,10 @@ class SimpleHandler(BaseHTTPRequestHandler):
 
         if self.path == '/register':
             email = data.get('email')
-            pwd = data.get('password')
+            # salt = base64.b64encode(os.urandom(48)).decode('utf-8')
+            print('User sent: ', data.get('password'), sep='')
+            pwd = ph.hash(data.get('password'))
+            print('Gonna store: ', pwd, sep='')
             if not isinstance(email, str) or not isinstance(pwd, str):
                 self._set_headers(400)
                 self.wfile.write(json.dumps({"error": "Invalid email or password"}).encode())
@@ -52,7 +59,8 @@ class SimpleHandler(BaseHTTPRequestHandler):
                     "balance": 0,
                     "transactions": [],
                     "tags": []
-                }
+                },
+                # 'salt': salt
             }
             token = base64.b64encode(email.encode()).decode()
             self._set_headers(200)
@@ -60,12 +68,19 @@ class SimpleHandler(BaseHTTPRequestHandler):
 
         elif self.path == '/login':
             email = data.get('email')
-            pwd = data.get('password')
+            print('User sent: ', data.get('password'), sep='')
+            if email not in users:
+                self._set_headers(401)
+                self.wfile.write(json.dumps({"error": "Invalid credentials"}).encode())
+                return
+            pwd = data.get('password') # + users[email]['salt']
             if not isinstance(email, str) or not isinstance(pwd, str):
                 self._set_headers(400)
                 self.wfile.write(json.dumps({"error": "Invalid email or password"}).encode())
                 return
-            if email not in users or users[email]['password'] != pwd:
+            try:
+                ph.verify(users[email]['password'], pwd)
+            except VerificationError:
                 self._set_headers(401)
                 self.wfile.write(json.dumps({"error": "Invalid credentials"}).encode())
                 return
@@ -84,7 +99,6 @@ class SimpleHandler(BaseHTTPRequestHandler):
                 self._set_headers(401)
                 self.wfile.write(json.dumps({"error": "Invalid token"}).encode())
                 return
-            # overwrite entire user data
             users[email]["data"] = data
             self._set_headers(200)
             self.wfile.write(json.dumps({"success": True}).encode())
@@ -105,7 +119,6 @@ class SimpleHandler(BaseHTTPRequestHandler):
                 self._set_headers(401)
                 self.wfile.write(json.dumps({"error": "Invalid token"}).encode())
                 return
-            # return full user data
             self._set_headers(200)
             self.wfile.write(json.dumps(users[email]["data"]).encode())
         else:

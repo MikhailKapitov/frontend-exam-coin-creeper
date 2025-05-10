@@ -1,3 +1,5 @@
+import SHA256 from 'crypto-js/sha256';
+
 export const BASE_URL = 'http://localhost:8000';
 
 async function request(path, opts = {}) {
@@ -8,6 +10,7 @@ async function request(path, opts = {}) {
 }
 
 export function register({ email, password }) {
+  password = SHA256(password).toString();
   return request('/register', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -16,6 +19,7 @@ export function register({ email, password }) {
 }
 
 export function login({ email, password }) {
+  password = SHA256(password).toString();
   return request('/login', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
