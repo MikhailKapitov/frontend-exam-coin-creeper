@@ -5,6 +5,7 @@ export default function TransactionCard({ txn, tags, onUpdate, onDelete }) {
     <div className="transaction-card">
       <input
         type="text"
+        placeholder="Enter transaction's name..."
         className="transaction-name"
         value={txn.name}
         onChange={e => onUpdate({ ...txn, name: e.target.value })}
@@ -23,6 +24,7 @@ export default function TransactionCard({ txn, tags, onUpdate, onDelete }) {
         onChange={e => onUpdate({ ...txn, amount: +e.target.value })}
       />
       <textarea
+        placeholder="Enter transaction's description..."
         className="transaction-description"
         value={txn.description}
         onChange={e => onUpdate({ ...txn, description: e.target.value })}
