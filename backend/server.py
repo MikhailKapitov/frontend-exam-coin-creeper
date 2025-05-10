@@ -5,18 +5,31 @@ import os
 from argon2 import PasswordHasher
 from argon2.exceptions import VerificationError
 import jwt
+import time
 
 users = {}
 SECRET_KEY = os.urandom(64)
 ph = PasswordHasher()
 
+def create_token(email):
+    expiration_time = 60 * 60
+    token = jwt.encode(
+        {'email': email, 'exp': int(time.time()) + expiration_time},
+        SECRET_KEY,
+        algorithm='HS256'
+    )
+    return token
+
 def parse_token(token):
     try:
-        email = base64.b64decode(token).decode()
+        decoded = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
+        email = decoded.get('email')
         if email in users:
             return email
-    except Exception:
-        pass
+    except jwt.ExpiredSignatureError:
+        return None
+    except jwt.InvalidTokenError:
+        return None
     return None
 
 class SimpleHandler(BaseHTTPRequestHandler):
@@ -64,7 +77,7 @@ class SimpleHandler(BaseHTTPRequestHandler):
                 },
                 # 'salt': salt
             }
-            token = base64.b64encode(email.encode()).decode()
+            token = create_token(email)
             self._set_headers(200)
             self.wfile.write(json.dumps({"token": token}).encode())
 
@@ -86,7 +99,7 @@ class SimpleHandler(BaseHTTPRequestHandler):
                 self._set_headers(401)
                 self.wfile.write(json.dumps({"error": "Invalid credentials"}).encode())
                 return
-            token = base64.b64encode(email.encode()).decode()
+            token = create_token(email)
             self._set_headers(200)
             self.wfile.write(json.dumps({"token": token}).encode())
 
@@ -96,7 +109,9 @@ class SimpleHandler(BaseHTTPRequestHandler):
                 self._set_headers(401)
                 self.wfile.write(json.dumps({"error": "No token"}).encode())
                 return
-            email = parse_token(auth.split(" ",1)[1])
+
+            token = auth.split(" ", 1)[1]
+            email = parse_token(token)
             if not email:
                 self._set_headers(401)
                 self.wfile.write(json.dumps({"error": "Invalid token"}).encode())
@@ -116,7 +131,8 @@ class SimpleHandler(BaseHTTPRequestHandler):
                 self._set_headers(401)
                 self.wfile.write(json.dumps({"error": "No token"}).encode())
                 return
-            email = parse_token(auth.split(" ",1)[1])
+            token = auth.split(" ", 1)[1]
+            email = parse_token(token)
             if not email:
                 self._set_headers(401)
                 self.wfile.write(json.dumps({"error": "Invalid token"}).encode())

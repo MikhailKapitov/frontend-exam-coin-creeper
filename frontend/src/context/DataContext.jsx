@@ -64,6 +64,7 @@ export function DataProvider({ children }) {
       .catch(err => {
         console.error('[DataContext] ❌  Load error:', err);
         dispatch({ type: 'LOAD_ERROR', error: err.message });
+        dispatch({ type: 'LOGOUT' });
       });
   }, [state.token]);
 
