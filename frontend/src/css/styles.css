@@ -476,3 +476,71 @@ h2 {
 .tag-card button:hover {
   color: #dc2626;
 }
+
+/* statistics */
+.stats-page h2 {
+  text-align: center;
+  font-size: 28px;
+  color: #1e3a8a;
+  margin-bottom: 30px;
+}
+
+.filter-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 20px auto;
+}
+
+.filter-wrapper input[type="datetime-local"] {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+}
+
+.filter-wrapper button {
+  padding: 8px 14px;
+  font-size: 18px;
+  background-color: #1e3a8a;
+  color: white;
+  border: transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.filter-wrapper button:hover {
+  background-color: #3b4cca;
+  transform: scale(1.05);
+}
+
+.stats-charts {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.stats-charts > div {
+  width: 45%;
+  background-color: #f1f5fb;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+
+.stats-charts h3 {
+  text-align: center;
+  font-size: 22px;
+  color: #1e3a8a;
+  margin-bottom: 16px;
+  border-bottom: 2px solid #3b4cca;
+  padding-bottom: 6px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  font-family: Arial, Helvetica, sans-serif;
+
+}

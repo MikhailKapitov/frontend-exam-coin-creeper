@@ -48,7 +48,11 @@ export default function Stats() {
           '#3d550c',
           '#81b622',
           '#ecf87f',
-          '#59981a',// Mr. Nodirbek, feel free to change colours here. I went with a Creeper-y https://www.canva.com/colors/color-palettes/healthy-leaves/ so far.
+          '#59981a',  
+          '#a4d05f',
+          '#78b44b',
+          '#b2eb6e',
+          '#72a204',// Mr. Nodirbek, feel free to change colours here. I went with a Creeper-y https://www.canva.com/colors/color-palettes/healthy-leaves/ so far.
         ],
       }],
     };
@@ -61,10 +65,14 @@ export default function Stats() {
       datasets: [{
         data: Object.values(data),
         backgroundColor: [
-          '#3d550c',
-          '#81b622',
-          '#ecf87f',
-          '#59981a',
+          '#d94c25',
+          '#e8692b',
+          '#f68b3e',
+          '#f7a645',
+          '#f79c2d',
+          '#f5742e',
+          '#f2462e',
+          '#d22a1b',
         ],
       }],
     };
@@ -94,12 +102,12 @@ export default function Stats() {
         </button>
       </div>
 
-      <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-        <div style={{ width: '45%' }}>
+      <div className="stats-charts" style={{ display: 'flex', justifyContent: 'space-around' }}>
+        <div style={{ width: '40%' }}>
           <h3>Spendings by Tag</h3>
           <Pie data={spendingsData} />
         </div>
-        <div style={{ width: '45%' }}>
+        <div style={{ width: '40%' }}>
           <h3>Earnings by Tag</h3>
           <Pie data={earningsData} />
         </div>
