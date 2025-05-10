@@ -401,8 +401,13 @@
 h2 {
   text-align: center;
   font-size: 28px;
-  color: #1e3a8a; 
+  color: #6b177b;
   margin-bottom: 30px;
+  text-shadow: 
+    2px 2px 0px white,   /* Horizontal shadow */
+    -2px -2px 0px white, /* Opposite direction */
+    2px -2px 0px white,  /* Opposite direction */
+    -2px 2px 0px white;  /* Opposite direction */
 }
 
 #add-tag-form {
@@ -451,12 +456,12 @@ h2 {
   display: flex;
   align-items: center;
   padding: 6px 12px;
-  background-color: #3b4cca;
-  border: 1px solid #79d267;
+  background-color: #3b2912;
+  border: 2px solid #79d267;
   border-radius: 20px;
   font-size: 15px;
   transition: box-shadow 0.2s ease;
-  color: white;
+  color: rgb(232, 228, 230);
 }
 
 .tag-card:hover {
