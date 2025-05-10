@@ -119,13 +119,23 @@
     justify-content: center;
   }
 
-  .filter-wrapper input[type="datetime-local"] {
-    padding: 0.5rem;
-    border: 2px solid #1a252f;
-    border-radius: 4px;
-    background-color: white;
-    font-size: 0.9rem;
-  }
+.filter-wrapper input[type="datetime-local"] {
+  padding: 0.5rem;
+  border: 2px solid #704214; 
+  border-radius: 0; 
+  background-color: #e0c097; 
+  color: #2d401d; 
+  font-family: 'VT323', monospace;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.2s;
+}
+
+.filter-wrapper input[type="datetime-local"]:hover,
+.filter-wrapper input[type="datetime-local"]:focus {
+  background-color: #f0d9b5;
+  border-color: #a0522d; 
+}
 
   .filter-wrapper button {
     padding: 0.3rem 0.5rem;
@@ -419,19 +429,20 @@ h2 {
 }
 
 #add-tag-form input[type="text"] {
-  width: 280px;
-  padding: 10px 14px;
-  font-size: 16px;
-  border: 2px solid #ccc;
-  border-radius: 8px;
-  background-color: #fff;
-  cursor: text;
+  padding: 10px;
+  background-color: #6a3d06;
+  border: 1px solid #9ce219;
+  color: #ecf87f;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 12px;
+  border-radius: 0;
+  outline: none;
 }
 
 #add-tag-form button {
   padding: 10px 16px;
   font-size: 16px;
-  background-color: #1e3a8a; /* тёмно-синяя кнопка */
+  background-color: #1e3a8a;
   color: white;
   border: none;
   border-radius: 8px;
@@ -462,6 +473,8 @@ h2 {
   font-size: 15px;
   transition: box-shadow 0.2s ease;
   color: rgb(232, 228, 230);
+  font-family: 'Press Start 2P', monospace;
+  color: #ecf87f;
 }
 
 .tag-card:hover {
@@ -503,6 +516,7 @@ h2 {
   font-size: 14px;
   border: 2px solid #ccc;
   border-radius: 6px;
+  background-color: gainsboro;
 }
 
 .filter-wrapper button {
