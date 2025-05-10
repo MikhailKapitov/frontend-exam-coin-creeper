@@ -17,7 +17,7 @@ export default function TransactionCard({ txn, tags, onUpdate, onDelete }) {
       </button>
       <input
         type="number"
-        step="0.01"
+        step="50"
         className="transaction-value-number"
         value={txn.amount}
         onChange={e => onUpdate({ ...txn, amount: +e.target.value })}
