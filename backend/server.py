@@ -4,8 +4,10 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 import os
 from argon2 import PasswordHasher
 from argon2.exceptions import VerificationError
+import jwt
 
 users = {}
+SECRET_KEY = os.urandom(64)
 ph = PasswordHasher()
 
 def parse_token(token):
