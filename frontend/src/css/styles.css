@@ -128,7 +128,7 @@
   }
 
   .filter-wrapper button {
-    padding: 0.5rem 1rem;
+    padding: 0.3rem 0.5rem;
     background-color: #3498db;
     color: white;
     border: 2px solid #1a252f;
@@ -398,44 +398,81 @@
     }
   }
 
-  #tag-list-wrapper {
-    max-width: 60%;
-    margin-top: 1rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-  
-  .tag-card {
-    background: #e0f7fa;
-    padding: 0.4rem 0.8rem;
-    border-radius: 20px;
-    font-size: 0.95rem;
-    display: flex;
-    align-items: center;
-  }
-  
-  .tag-card button{
-    padding: 0.3rem 0.5rem;
-    background-color: #e74c3c;
-    color: white;
-    border: 2px solid #1a252f;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-    text-transform: uppercase;
-    box-shadow: 0 2px 0 #1a252f;
-    transition: all 0.2s;
-    font-size: 0.4rem;
-    align-self: flex-end;
-  }
+h2 {
+  text-align: center;
+  font-size: 28px;
+  color: #1e3a8a; 
+  margin-bottom: 30px;
+}
 
-  .tag-card button:hover {
-    background-color: #c0392b;
-    transform: translateY(-2px);
-  }
+#add-tag-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 20px auto;
+}
 
-  .tag-card buttonactive {
-    transform: translateY(0);
-    box-shadow: none;
-  }
+#add-tag-form input[type="text"] {
+  width: 280px;
+  padding: 10px 14px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  cursor: text;
+}
+
+#add-tag-form button {
+  padding: 10px 16px;
+  font-size: 16px;
+  background-color: #1e3a8a; /* тёмно-синяя кнопка */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+#add-tag-form button:hover {
+  background-color: #3b4cca;
+  transform: scale(1.03);
+}
+
+#tag-list-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.tag-card {
+  display: flex;
+  align-items: center;
+  padding: 6px 12px;
+  background-color: #3b4cca;
+  border: 1px solid #79d267;
+  border-radius: 20px;
+  font-size: 15px;
+  transition: box-shadow 0.2s ease;
+  color: white;
+}
+
+.tag-card:hover {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tag-card button {
+  background: transparent;
+  border: none;
+  color: #991b1b;
+  margin-left: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.tag-card button:hover {
+  color: #dc2626;
+}

@@ -33,7 +33,7 @@ export default function Settings() {
         {tags.map(t => (
           <div key={t.id} className="tag-card">
             <span>{t.name}</span>
-            <button onClick={() => delTag(t.id)}>Delete</button>
+            <button onClick={() => delTag(t.id)}>X</button>
           </div>
         ))}
       </div>
