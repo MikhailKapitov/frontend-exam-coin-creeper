@@ -4,7 +4,17 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
   }
+  @font-face {
+	font-family: 'Minecraft Rus Regular';
+	src: url('..\fonts\minecraft_rus_regular.eot'); /* IE 9 Compatibility Mode */
+	src: url('..\fonts\minecraft_rus_regular.eot?#iefix') format('embedded-opentype'), /* IE < 9 */
+		url('..\fonts\minecraft_rus_regular.woff2') format('woff2'), /* Super Modern Browsers */
+		url('..\fonts\minecraft_rus_regular.woff') format('woff'), /* Firefox >= 3.6, any other modern browser */
+		url('..\fonts\minecraft_rus_regular.ttf') format('truetype'), /* Safari, Android, iOS */
+		url('..\fonts\minecraft_rus_regular.svg#minecraft_rus_regular') format('svg'); /* Chrome < 4, Legacy iOS */
+}
   
   #header {
     background-color: #2c3e50;
@@ -411,13 +421,20 @@
 h2 {
   text-align: center;
   font-size: 28px;
-  color: #6b177b;
+  color: #ffffff;
   margin-bottom: 30px;
-  text-shadow: 
-    2px 2px 0px white,   /* Horizontal shadow */
-    -2px -2px 0px white, /* Opposite direction */
-    2px -2px 0px white,  /* Opposite direction */
-    -2px 2px 0px white;  /* Opposite direction */
+  /* text-shadow: 
+    2px 2px 0px white,  
+    -2px -2px 0px white, 
+    2px -2px 0px white,  
+    -2px 2px 0px white;   */
+  font-family:Minecraft Rus Regular;
+  display: block;
+  padding: 10px 20px;
+  margin: 0 auto;
+  width: fit-content;
+  background-color: rgba(20, 20, 20, 0.6);
+  backdrop-filter: blur(4px);   
 }
 
 #add-tag-form {
