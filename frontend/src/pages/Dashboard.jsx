@@ -86,7 +86,10 @@ export default function Dashboard() {
     console.log(event);
     const txnToDelete = transactions.find(t => t.id === id);
     if (txnToDelete && true) { // Math.abs(txnToDelete.amount) === 555
-      triggerExplosion(event.clientX, event.clientY);
+      const isTouch = event.type === 'touchend';
+      const posX = isTouch ? event.changedTouches[0].clientX : event.clientX;
+      const posY = isTouch ? event.changedTouches[0].clientY : event.clientY;
+      triggerExplosion(posX, posY);
     }
     const txns = transactions.filter(t => t.id !== id);
     dispatch({ type: 'UPDATE_ALL', data: { transactions: txns, balance: recalc(txns) } });

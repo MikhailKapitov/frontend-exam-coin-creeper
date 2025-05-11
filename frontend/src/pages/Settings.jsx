@@ -49,7 +49,10 @@ export default function Settings() {
       alert('Cannot delete the "Other" tag.');
       return;
     }
-    triggerExplosion(event.clientX, event.clientY);
+    const isTouch = event.type === 'touchend';
+    const posX = isTouch ? event.changedTouches[0].clientX : event.clientX;
+    const posY = isTouch ? event.changedTouches[0].clientY : event.clientY;
+    triggerExplosion(posX, posY);
     const updatedTransactions = transactions.map(txn => 
       txn.tag === id ? { ...txn, tag: 'other' } : txn
     );
