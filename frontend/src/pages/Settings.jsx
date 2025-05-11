@@ -13,7 +13,7 @@ export default function Settings() {
     new Audio('/src/sounds/Firework_large_blast.ogg'),
   ];
 
-  function triggerExplosion() {
+  function triggerExplosion(x, y) {
 
     audioFiles[Math.floor(Math.random() * audioFiles.length)].play();
 
@@ -25,7 +25,8 @@ export default function Settings() {
           scalar: scalar,
           decay: 0.99,
           gravity: 0.33,
-          particleCount: 8 / scalar
+          particleCount: 8 / scalar,
+          origin: {x: x / window.innerWidth, y: y / window.innerHeight}
         });
       }
     }
@@ -43,12 +44,12 @@ export default function Settings() {
     setNewTag('');
   };
 
-  const delTag = id => {
+  const delTag = (id, event) => {
     if (id === 'other') {
       alert('Cannot delete the "Other" tag.');
       return;
     }
-    triggerExplosion();
+    triggerExplosion(event.clientX, event.clientY);
     const updatedTransactions = transactions.map(txn => 
       txn.tag === id ? { ...txn, tag: 'other' } : txn
     );
@@ -76,7 +77,7 @@ export default function Settings() {
         {tags.map(t => (
           <div key={t.id} className="tag-card">
             <span>{t.name}</span>
-            <button onClick={() => delTag(t.id)}>X</button>
+            <button onClick={(e) => delTag(t.id, e)}>X</button>
           </div>
         ))}
       </div>

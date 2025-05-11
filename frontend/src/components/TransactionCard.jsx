@@ -46,7 +46,7 @@ export default function TransactionCard({ txn, tags, onUpdate, onDelete }) {
       />
       <button
         className="transaction-deletion-button"
-        onClick={() => onDelete(txn.id)}
+        onClick={(e) => onDelete(txn.id, e)}
       >
         TRASH
       </button>

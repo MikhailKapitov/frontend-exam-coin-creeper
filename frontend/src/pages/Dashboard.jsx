@@ -14,7 +14,7 @@ export default function Dashboard() {
     new Audio('/src/sounds/Explosion4.ogg'),
   ];
 
-  function triggerExplosion() {
+  function triggerExplosion(x, y) {
 
     const shapes = [
       confetti.shapeFromText({ text: '💸', scalar: 1.0 }),
@@ -39,7 +39,8 @@ export default function Dashboard() {
           scalar: scalar,
           decay: 0.99,
           gravity: 0.33,
-          particleCount: 16 / scalar
+          particleCount: 16 / scalar,
+          origin: {x: x / window.innerWidth, y: y / window.innerHeight}
         });
       }
     }
@@ -81,10 +82,11 @@ export default function Dashboard() {
     dispatch({ type: 'UPDATE_ALL', data: { transactions: txns, balance: recalc(txns) } });
   };
 
-  const deleteTxn = id => {
+  const deleteTxn = (id, event) => {
+    console.log(event);
     const txnToDelete = transactions.find(t => t.id === id);
     if (txnToDelete && true) { // Math.abs(txnToDelete.amount) === 555
-      triggerExplosion();
+      triggerExplosion(event.clientX, event.clientY);
     }
     const txns = transactions.filter(t => t.id !== id);
     dispatch({ type: 'UPDATE_ALL', data: { transactions: txns, balance: recalc(txns) } });
