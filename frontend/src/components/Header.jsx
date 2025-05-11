@@ -9,7 +9,7 @@ export default function Header() {
   return (
     <header id="header">
       <div id="navbar-wrapper">
-        <img src="/src/images/creeper_favicon.ico" alt="logo" />
+        <img src="/src/images/Chicken Jockey.png" alt="logo" style={{ width: '4rem', height: 'auto' }} />
         <div className="nav-buttons">
           {token && (
             <>
