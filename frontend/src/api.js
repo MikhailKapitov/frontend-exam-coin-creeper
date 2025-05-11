@@ -1,6 +1,6 @@
 import SHA256 from 'crypto-js/sha256';
 
-export const BASE_URL = 'http://0.0.0.0:8000';
+export const BASE_URL = 'http://localhost:8000';
 
 async function request(path, opts = {}) {
   const res = await fetch(`${BASE_URL}${path}`, opts);

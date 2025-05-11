@@ -8,10 +8,10 @@ export default function Dashboard() {
 
   // I got the audio from the game's Wiki: https://minecraft.wiki/w/Category:Explosion_sounds .
   const audioFiles = [
-    '/src/sounds/Explosion1.ogg',
-    '/src/sounds/Explosion2.ogg',
-    '/src/sounds/Explosion3.ogg',
-    '/src/sounds/Explosion4.ogg',
+    new Audio('/src/sounds/Explosion1.ogg'),
+    new Audio('/src/sounds/Explosion2.ogg'),
+    new Audio('/src/sounds/Explosion3.ogg'),
+    new Audio('/src/sounds/Explosion4.ogg'),
   ];
 
   function triggerExplosion() {
@@ -28,10 +28,7 @@ export default function Dashboard() {
       confetti.shapeFromText({ text: '💲', scalar: 1.0 }),
     ]
 
-    const audio = new Audio(audioFiles[Math.floor(Math.random() * audioFiles.length)]);
-    console.log(audio);
-    audio.play();
-
+    audioFiles[Math.floor(Math.random() * audioFiles.length)].play();
 
     for (let startVelocity = 16; startVelocity <= 32; startVelocity += 8) {
       for (let scalar = 1; scalar <= 8; scalar *= 2) {
