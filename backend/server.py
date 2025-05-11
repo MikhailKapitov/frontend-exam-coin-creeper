@@ -144,8 +144,8 @@ class SimpleHandler(BaseHTTPRequestHandler):
             self.wfile.write(json.dumps({"error": "Not Found"}).encode())
 
 def run(port=8000):
-    print(f"Backend running at http://localhost:{port}")
-    HTTPServer(('localhost', port), SimpleHandler).serve_forever()
+    print(f"Backend running at http://0.0.0.0:{port}")
+    HTTPServer(('0.0.0.0', port), SimpleHandler).serve_forever()
 
 if __name__ == '__main__':
     run()
