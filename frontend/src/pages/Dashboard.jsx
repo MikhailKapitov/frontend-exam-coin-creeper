@@ -75,7 +75,7 @@ export default function Dashboard() {
       tag: 'other',
       date: new Date().toISOString().slice(0,16),
     };
-    const txns = [...transactions, newTxn];
+    const txns = [newTxn, ...transactions];
     dispatch({ type: 'UPDATE_ALL', data: { transactions: txns, balance: recalc(txns) } });
   };
 
