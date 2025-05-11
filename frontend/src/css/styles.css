@@ -540,6 +540,7 @@ h2 {
   justify-content: space-around;
   flex-wrap: wrap;
   gap: 20px;
+  /* width: 45%; */
 }
 
 .stats-charts > div {
@@ -577,7 +578,14 @@ h2 {
     display: block;
   }
 
-
+  .stats-charts {
+    flex-direction: column;
+    align-content: center;
+  }
+  
+  .stats-charts > div {
+    width: 90%;
+  }
 
   .filter-wrapper {
     flex-direction: column;

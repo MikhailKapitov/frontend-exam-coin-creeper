@@ -101,11 +101,11 @@ export default function Stats() {
       </div>
 
       <div className="stats-charts" style={{ display: 'flex', justifyContent: 'space-around' }}>
-        <div style={{ width: '40%' }}>
+        <div>
           <h3>Spendings by Tag</h3>
           <Pie data={spendingsData} />
         </div>
-        <div style={{ width: '40%' }}>
+        <div>
           <h3>Earnings by Tag</h3>
           <Pie data={earningsData} />
         </div>
