@@ -19,9 +19,13 @@ export default function Header() {
             </>
           )}
           {token ? (
-            <button onClick={() => { logout(); nav('/login'); }}>
-              Log out
-            </button>
+            <button onClick={() => {
+              const isConfirmed = window.confirm("Are you sure you want to log out?");
+              if (isConfirmed) {
+                logout();
+                nav('/login');
+              }
+            }}>Log Out</button>
           ) : (
             <NavLink to="/login"><button>Log in</button></NavLink>
           )}
