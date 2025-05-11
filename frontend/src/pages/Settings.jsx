@@ -7,10 +7,10 @@ export default function Settings() {
 
   // I got the audio from the game's Wiki: https://minecraft.wiki/w/Category:Firework_sounds .
   const audioFiles = [
-    new Audio('/src/sounds/Firework_blast_far.ogg'),
-    new Audio('/src/sounds/Firework_blast.ogg'),
-    new Audio('/src/sounds/Firework_large_blast_far.ogg'),
-    new Audio('/src/sounds/Firework_large_blast.ogg'),
+    Object.assign(new Audio('/src/sounds/Firework_blast_far.ogg'), { volume: 0.2 }),
+    Object.assign(new Audio('/src/sounds/Firework_blast.ogg'), { volume: 0.2 }),
+    Object.assign(new Audio('/src/sounds/Firework_large_blast_far.ogg'), { volume: 0.2 }),
+    Object.assign(new Audio('/src/sounds/Firework_large_blast.ogg'), { volume: 0.2 }),
   ];
 
   function triggerExplosion(x, y) {

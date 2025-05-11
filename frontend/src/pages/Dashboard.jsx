@@ -8,10 +8,10 @@ export default function Dashboard() {
 
   // I got the audio from the game's Wiki: https://minecraft.wiki/w/Category:Explosion_sounds .
   const audioFiles = [
-    new Audio('/src/sounds/Explosion1.ogg'),
-    new Audio('/src/sounds/Explosion2.ogg'),
-    new Audio('/src/sounds/Explosion3.ogg'),
-    new Audio('/src/sounds/Explosion4.ogg'),
+    Object.assign(new Audio('/src/sounds/Explosion1.ogg'), { volume: 0.1 }),
+    Object.assign(new Audio('/src/sounds/Explosion2.ogg'), { volume: 0.1 }),
+    Object.assign(new Audio('/src/sounds/Explosion3.ogg'), { volume: 0.1 }),
+    Object.assign(new Audio('/src/sounds/Explosion4.ogg'), { volume: 0.1 }),
   ];
 
   function triggerExplosion(x, y) {
