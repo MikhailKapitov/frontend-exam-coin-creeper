@@ -79,11 +79,17 @@ export function DataProvider({ children }) {
 
   useEffect(() => {
     if (!state.token || !hasLoadedOnce.current) return;
+
     const { token, loading, error, ...toSave } = state;
-    console.log('[DataContext] 💾 Saving data:', toSave);
-    saveData(state.token, toSave)
-      .then(() => console.log('[DataContext] ✔️  Save successful'))
-      .catch(err => console.error('[DataContext] ❌  Save error:', err));
+
+    const timeout = setTimeout(() => {
+      console.log('[DataContext] 💾 Debounced save:', toSave);
+      saveData(state.token, toSave)
+        .then(() => console.log('[DataContext] ✔️ Save successful'))
+        .catch(err => console.error('[DataContext] ❌ Save error:', err));
+    }, 1000);
+
+    return () => clearTimeout(timeout);
   }, [state.token, state.balance, state.transactions, state.tags]);
 
   const login = async creds => {
