@@ -98,7 +98,7 @@ export default function Dashboard() {
   return (
     <div id="content-wrapper">
       <div className="balance-display-wrapper">
-        <div id="balance-display">{balance.toFixed(2)} <img src="/src/images/emerald.jpg" alt="coin" style={{ width: '3rem', verticalAlign: 'middle' }} /></div>
+        <div id="balance-display">{balance.toFixed(2)} <img src="/src/images/emerald-Photoroom.png" alt="coin" style={{ width: '3rem', verticalAlign: 'middle' }} /></div>
         <button id="add-transaction-button" onClick={addTxn}>+</button>
       </div>
 
