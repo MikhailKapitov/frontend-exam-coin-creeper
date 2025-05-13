@@ -6,6 +6,6 @@
 
 🪙 Actual basic backend this time!
 
-🪙 Pie charts, hashes, explosions and more!
+🪙 🥧Pie charts📈, #️⃣hashes🔒, 💣explosions💥 and more!
 
 Just our little uni frontend exam project. :)
